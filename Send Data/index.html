@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn Ajax | Send Data</title>
+</head>
+<body>
+  <h2>POST XMLHttpRequets - Sending Data</h2>
+  <p id="server-response"></p>
+  <script>
+    const request = new XMLHttpRequest();
+    request.onload = function () {
+      const serverResponse = document.getElementById('server-response');
+      console.log(this.responseText);
+      serverResponse.innerHTML = this.responseText;
+    }
+    request.open('POST', 'send.php');
+    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    request.send('name=dimas&message=Hello apa kabar');
+  </script>
+</body>
+</html>
