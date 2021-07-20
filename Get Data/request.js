@@ -6,6 +6,7 @@ buttonRequest.addEventListener('click', () => {
     if (request.readyState === 4) {
       if (request.status === 200) {
         const datas = JSON.parse(request.responseText);
+        console.log(datas);
         datas.forEach(data => {
           const elementPost = `<article class="blog-posts">
           <header class="blog-header">

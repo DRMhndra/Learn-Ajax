@@ -5,20 +5,55 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Learn Ajax | Send Data</title>
+  <style>
+    .form-send-data { padding: 20px; } 
+    .form-control {
+        display: block;
+        margin: 10px 0;
+        padding: 15px;
+        height: 25px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+  </style>
 </head>
 <body>
   <h2>POST XMLHttpRequets - Sending Data</h2>
-  <p id="server-response"></p>
+  <div class="form-send-data">
+    <form id="form-data" method="POST">
+      <input type="text" class="form-control" id="blogId">
+      <input type="text" class="form-control" id="userId">
+      <input type="text" class="form-control" id="title" placeholder="title">
+      <input type="text" class="form-control" id="body-blog" placeholder="post">
+      <input type="submit" class="btn btn-submit" value="Publish">
+    </form>
+  </div>
+  <h5 id="test"></h5>
   <script>
-    const request = new XMLHttpRequest();
-    request.onload = function () {
-      const serverResponse = document.getElementById('server-response');
-      console.log(this.responseText);
-      serverResponse.innerHTML = this.responseText;
-    }
-    request.open('POST', 'send.php');
-    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    request.send('name=dimas&message=Hello apa kabar');
+    const formSubmit = document.getElementById('form-data');
+    formSubmit.addEventListener('submit', function(e) {
+      e.preventDefault();
+      let data = JSON.stringify({
+        id: document.getElementById('blogId').value,
+        userId: document.getElementById('userId').value,
+        title: document.getElementById('title').value,
+        body: document.getElementById('body-blog').value,
+      });
+      const request = new XMLHttpRequest();
+      request.addEventListener('readystatechange', function(){
+        if (request.readyState === 4) {
+          if (request.status === 200) {
+            const datas = JSON.parse(request.responseText);
+            const testing = document.getElementById('test').innerHTML = datas.title;
+          } else {
+            console.log(`gagal`);
+          }
+        }
+      });
+      request.open('POST', 'receiver.php',  true);
+      request.setRequestHeader('Content-type', 'application/json;charset=UTF-8');
+      request.send(data);
+    });
   </script>
 </body>
 </html>
