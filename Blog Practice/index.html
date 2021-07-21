@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice Blog | Asynchronous Javascript</title>
+  <style>
+    .posts{
+      border: 1px solid black;
+      margin: 10px 0;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header class="blogs-header">
+    <h2>Practice Blogs Simple</h2>
+  </header>
+  <main>
+    <div class="blogs-post-header">
+      <form id="form-blogs" method="POST">
+        <div class="form-group">
+          <input type="text" id="title-post" class="form-control" placeholder="title">
+        </div>
+        <div class="form-group">
+          <textarea name="" id="body-post" class="form-control" cols="30" rows="10"></textarea>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn" id="button-publish">Publish</button>
+        </div>
+      </form>
+    </div>
+    <article class="blogs-show">
+      <!-- <div class="posts">
+        <div class="posts-header">
+          <h3>Testing</h3>
+        </div>
+        <div class="posts-body">
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita molestiae repudiandae placeat perferendis, saepe nobis, accusamus fugit rem minima iusto voluptates, debitis totam quis. Sed officia et, cupiditate beatae, ullam dicta debitis expedita cum sit eos repellendus deserunt harum? Illum consequatur a corporis voluptas quae iure ducimus sint minima soluta?
+          </p>
+        </div>
+        <div class="posts-action">
+          <button class="btn btn-edit">Edit</button>
+          <button class="btn btn-edit">Delete</button>
+        </div>
+      </div> -->
+    </article>
+  </main>
+  <script type="module" src="./src/request.js"></script>
+</body>
+</html>
