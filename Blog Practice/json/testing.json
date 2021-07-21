@@ -1,12 +1,14 @@
 [
   {
     "id": 1,
-    "title": "Belajar Memasak Dengan Chef Adi",
-    "body": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores error consequatur assumenda suscipit, harum recusandae fugiat quis nam magni. Sequi?"
+    "title": "Belajar Memasak Bersama Tifany",
+    "slug": "belajar-memasak-bersama-tifany",
+    "body": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime, voluptas dignissimos? Ipsa nobis minus placeat, aut illum voluptate doloremque doloribus exercitationem quibusdam ipsam dicta hic fugit explicabo, id possimus cumque excepturi voluptatibus assumenda. Fuga ipsum quia, ea repellendus exercitationem voluptatibus dicta tempore laboriosam. Hic nesciunt voluptatum culpa ex maxime? Magni maiores vero temporibus nam dolore fugit tempora dolores corporis fugiat corrupti. Nulla sit id, libero labore animi magnam officia doloribus, maiores quo tempora ex, mollitia amet exercitationem necessitatibus blanditiis laboriosam repellendus. Dignissimos soluta assumenda velit ab possimus illum, odio iusto sint. Quis doloremque distinctio dolorum, iure aspernatur suscipit tenetur quidem?"
   },
   {
     "id": 2,
-    "title": "Belajar Coding dengan CEO Tokopedia",
-    "body": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores error consequatur assumenda suscipit, harum recusandae fugiat quis nam magni. Sequi?"
+    "title": "Belajar memasak bersama Adi",
+    "slug": "belajar-memasak-bersama-adi",
+    "body": "Hello Semua Test Dulu"
   }
 ]
