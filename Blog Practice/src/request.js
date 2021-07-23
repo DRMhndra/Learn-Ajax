@@ -1,6 +1,9 @@
 const parentBlogs = document.querySelector('.blogs-show');
 const formsPost = document.getElementById('form-blogs');
 const buttonSubmit = document.getElementById('button-publish');
+const modalShow = document.getElementById('myModal');
+const btnModalCancel = document.querySelector('.btn-cancel');
+const btnModalConfirm = document.querySelector('.btn-confirm');
 let autoIdIncrements = 1;
 
 const getAllBlogs = () => {
@@ -71,6 +74,28 @@ const updateBlogs = () => {
   });
 }
 
+const deleteBlogs = (_id) => {
+  return new Promise((resolve, reject) => {
+    let dataDelete = JSON.stringify({
+      id: _id
+    });
+    const request = new XMLHttpRequest();
+    request.addEventListener('readystatechange', function() {
+      if(request.readyState === 4) {
+        if(request.status === 200) {
+          const dataSuccess = JSON.parse(request.responseText);
+          resolve(dataSuccess);
+        } else {
+          reject(`Gagal`);
+        }
+      }
+    });
+    request.open('DELETE', 'json/receive.php');
+    request.setRequestHeader('Content-type', 'application/json');
+    request.send(dataDelete);
+  });
+}
+
 const getBlogsById = (id, method) => {
   return new Promise((resolve, reject) => {
     const request = new XMLHttpRequest();
@@ -114,26 +139,42 @@ const renderBlogs = (datas) => {
     parentBlogs.innerHTML += post;
     });
     // section get data
-    const deleteButtons = Array.from(document.querySelectorAll('.btn-edit'));
-    deleteButtons.forEach(e => {
-      e.addEventListener('click', function(){
+    const editButtons = Array.from(document.querySelectorAll('.btn-edit'));
+    const deleteButtons = Array.from(document.querySelectorAll('.btn-delete'));
+    editButtons.forEach(e => {
+      e.addEventListener('click', function() {
         const data = this;
-        console.log(data);
         const id = parseInt(data.id.split("-")[1])
         const method = data.innerHTML;
         getBlogsById(id, method)
           .then(values => {
-            const data = JSON.parse(values);
-            const idPost = document.getElementById('id-post').value = data.id;
-            const title = document.getElementById('title-post').value = data.title;
-            const body = document.getElementById('body-post').value = data.body;
+            const dataEdit = JSON.parse(values);
+            const idPost = document.getElementById('id-post').value = dataEdit.id;
+            const title = document.getElementById('title-post').value = dataEdit.title;
+            const body = document.getElementById('body-post').value = dataEdit.body;
             const button = document.getElementById('button-publish').textContent = `Update`;
-            console.log(data);
           })
           .catch(rejectReason => {
             console.log(rejectReason);
           });
       })
+    });
+    deleteButtons.forEach(e => {
+      e.addEventListener('click', function() {
+        const data = this;
+        const id = parseInt(data.id.split("-")[1]);
+        const method = data.innerHTML;
+        modalShow.style.display = 'block';
+        getBlogsById(id, method)
+          .then(values => {
+            const dataDelete = JSON.parse(values);
+            btnModalConfirm.setAttribute('id', `post-${dataDelete.id}`);
+            console.log(dataDelete);
+          })
+          .catch(rejectReason => {
+            console.log(rejectReason);
+          });
+      });
     })
   } else {
     parentBlogs.innerHTML = `Data Kosong`;
@@ -174,4 +215,24 @@ formsPost.addEventListener('submit', function(e) {
         console.log(rejectReason);
       });
   }
+});
+
+btnModalCancel.addEventListener('click', function() {
+  modalShow.style.display = 'none';
+});
+
+btnModalConfirm.addEventListener('click', function() {
+  const data = this;
+  const idBlog = data.id.split("-")[1];
+  deleteBlogs(idBlog)
+    .then(values => {
+      modalShow.style.display = 'none';
+      setTimeout(() => {
+        renderBlogs(values);
+      }, 1000);
+      console.log(values);
+    })
+    .catch(rejectReason => {
+      console.log(rejectReason);
+    });
 });
