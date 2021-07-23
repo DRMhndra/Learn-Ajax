@@ -9,9 +9,10 @@
 </head>
 <body>
   <header class="blogs-header">
-    <h2>Practice Blogs Simple</h2>
-  </header>
-  <main>
+    <div class="new-blogs">
+      <h2>Practice Blogs Simple</h2>
+      <button class="btn btn-new">New Blog</button>
+    </div>
     <div class="blogs-post-header">
       <form id="form-blogs" method="POST">
         <input type="hidden" id="id-post">
@@ -21,11 +22,14 @@
         <div class="form-group">
           <textarea name="" id="body-post" class="form-control" cols="30" rows="10"></textarea>
         </div>
-        <div class="form-group">
+        <div class="form-group fix-float">
           <button type="submit" class="btn" id="button-publish">Publish</button>
         </div>
       </form>
     </div>
+    <hr />
+  </header>
+  <main>
     <article class="blogs-show"></article>
   </main>
   <div id="myModal" class="modal">
