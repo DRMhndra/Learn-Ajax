@@ -4,6 +4,8 @@ const buttonSubmit = document.getElementById('button-publish');
 const modalShow = document.getElementById('myModal');
 const btnModalCancel = document.querySelector('.btn-cancel');
 const btnModalConfirm = document.querySelector('.btn-confirm');
+const btnNewBlog = document.querySelector('.btn-new');
+const wrapperFormPost = document.querySelector('.blogs-post-header');
 let autoIdIncrements = 1;
 
 const getAllBlogs = () => {
@@ -169,7 +171,6 @@ const renderBlogs = (datas) => {
           .then(values => {
             const dataDelete = JSON.parse(values);
             btnModalConfirm.setAttribute('id', `post-${dataDelete.id}`);
-            console.log(dataDelete);
           })
           .catch(rejectReason => {
             console.log(rejectReason);
@@ -202,6 +203,8 @@ formsPost.addEventListener('submit', function(e) {
     addBlogs()
     .then(values => {
       renderBlogs(values);
+      document.getElementById('title-post').value = '';
+      document.getElementById('body-post').value = '';
     })
     .catch(rejectReason => {
       console.log(rejectReason);
@@ -210,6 +213,9 @@ formsPost.addEventListener('submit', function(e) {
     updateBlogs()
       .then(values => {
         renderBlogs(values);
+        document.getElementById('button-publish').textContent = `Publish`;
+        document.getElementById('title-post').value = '';
+        document.getElementById('body-post').value = '';
       })
       .catch(rejectReason => {
         console.log(rejectReason);
@@ -230,9 +236,16 @@ btnModalConfirm.addEventListener('click', function() {
       setTimeout(() => {
         renderBlogs(values);
       }, 1000);
-      console.log(values);
     })
     .catch(rejectReason => {
       console.log(rejectReason);
     });
+});
+
+btnNewBlog.addEventListener('click', function () {
+  if (wrapperFormPost.style.display == 'block') {
+    wrapperFormPost.style.display = 'none';
+  } else {
+    wrapperFormPost.style.display = 'block';
+  }
 });
