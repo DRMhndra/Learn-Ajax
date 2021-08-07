@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice Blog | Asynchronous Javascript</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="blogs-header">
+    <div class="new-blogs">
+      <h2>Practice Blogs Simple</h2>
+      <button class="btn btn-new">New Blog</button>
+    </div>
+    <div class="blogs-post-header">
+      <form id="form-blogs" method="POST">
+        <input type="hidden" id="id-post">
+        <div class="form-group">
+          <input type="text" id="title-post" class="form-control" placeholder="title">
+        </div>
+        <div class="form-group">
+          <textarea name="" id="body-post" class="form-control" cols="30" rows="10"></textarea>
+        </div>
+        <div class="form-group fix-float">
+          <button type="submit" class="btn" id="button-publish">Publish</button>
+        </div>
+      </form>
+    </div>
+    <hr />
+  </header>
+  <main>
+    <article class="blogs-show"></article>
+  </main>
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <div class="text-content">
+        <h3>Are You Sure?</h3>
+        <h5>You won't be able to revert this!</h5>
+      </div>
+      <div class="button-content">
+        <button type="button" class="btn btn-confirm">Yes, delete it!</button>
+        <button type="button" class="btn btn-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="./src/request.js"></script>
+</body>
+</html>

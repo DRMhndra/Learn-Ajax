@@ -1,0 +1,10 @@
+body{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 15px;
+}
+.blog-posts {
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 10px auto;
+}
